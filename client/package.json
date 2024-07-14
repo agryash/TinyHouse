@@ -1,0 +1,60 @@
+{
+    "name": "tinyhouse-client",
+    "version": "0.1.0",
+    "private": true,
+    "dependencies": {
+        "@ant-design/icons": "^5.3.7",
+        "@apollo/client": "^3.10.8",
+        "antd": "^5.19.1",
+        "graphql": "^16.9.0",
+        "history": "^5.3.0",
+        "react": "^18.3.1",
+        "react-dom": "^18.3.1",
+        "react-router": "^6.21.1",
+        "react-router-dom": "6.24.1"
+    },
+    "devDependencies": {
+        "@testing-library/jest-dom": "^6.4.6",
+        "@testing-library/react": "^15.0.7",
+        "@testing-library/user-event": "^14.5.2",
+        "@types/graphql": "^14.5.0",
+        "@types/jest": "^29.5.12",
+        "@types/node": "^20.14.10",
+        "@types/react": "^18.3.3",
+        "@types/react-dom": "^18.3.0",
+        "@vitejs/plugin-react": "^4.3.1",
+        "prettier": "^3.3.2",
+        "typescript": "~5.5.3",
+        "vite": "^5.3.3"
+    },
+    "scripts": {
+        "start": "vite",
+        "build": "vite build",
+        "serve": "vite preview",
+        "codegen:schema2": "apollo-codegen introspect-schema http://localhost:9000/api --output schema.json",
+        "codegen:generate2": "apollo-codegen generate src/**/*.ts --schema schema.json --target typescript --output ./src/lib/graphql/globalTypes.ts",
+        "codegen:schema": "npx apollo client:download-schema --endpoint=http://localhost:9000/api",
+        "codegen:generate": "npx apollo client:codegen --localSchemaFile=schema.json --includes=src/**/*.ts --globalTypesFile=./src/lib/graphql/globalTypes.ts --target=typescript",
+        "prettier": "prettier --write ."
+    },
+    "eslintConfig": {
+        "extends": "react-app"
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all",
+            "not IE 11",
+            "not IE_Mob 11"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version",
+            "not IE 11",
+            "not IE_Mob 11"
+        ]
+    },
+    "proxy": "http://localhost:9000"
+}
